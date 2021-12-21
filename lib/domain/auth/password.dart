@@ -1,12 +1,11 @@
 import 'package:todo_app_ddd/domain/core/value_objects.dart';
 import 'package:todo_app_ddd/domain/core/value_validators.dart';
 
-class Password extends ValueObject<String?> {
+class Password extends ValueObject<String> {
   @override
-  final FailOrVal<String?> value;
+  final FailOrVal<String> value;
 
-  factory Password(String? input) {
-    assert(input != null);
+  factory Password(String input) {
     return Password._(
       validatePassword(input),
     );
