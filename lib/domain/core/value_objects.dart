@@ -9,6 +9,8 @@ abstract class ValueObject<T> {
   const ValueObject();
   FailOrVal<T> get value;
 
+  bool isValid() => value.isRight();
+
   @override
   String toString() => 'Value($value)';
 
