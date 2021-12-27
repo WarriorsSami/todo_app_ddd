@@ -5,13 +5,13 @@ import 'package:todo_app_ddd/domain/auth/auth_failures.dart';
 
 abstract class IAuthFacade {
   Future<AFailOrVal> registerWithEmailAndPassword({
-    @required EmailAddress emailAddress,
-    @required Password password,
+    required EmailAddress emailAddress,
+    required Password password,
   });
 
   Future<AFailOrVal> signInWithEmailAndPassword({
-    @required EmailAddress emailAddress,
-    @required Password password,
+    required EmailAddress emailAddress,
+    required Password password,
   });
 
   Future<AFailOrVal> signInWithGoogle();
