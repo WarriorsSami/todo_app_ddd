@@ -1,6 +1,9 @@
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'auth_failures.freezed.dart';
+
+typedef AFailOrVal = Either<AuthFailure, Unit>;
 
 @freezed
 abstract class AuthFailure with _$AuthFailure {
