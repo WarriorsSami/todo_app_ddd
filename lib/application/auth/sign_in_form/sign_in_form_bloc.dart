@@ -18,55 +18,55 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
   SignInFormBloc(this._authFacade) : super(SignInFormState.initial()) {
     on<SignInFormEvent>((event, emit) {
       event.map(
-          // delegate logic to email value object
-          emailChanged: (e) {
+        // delegate logic to email value object
+        emailChanged: (e) {
+          emit(state.copyWith(
+            emailAddress: EmailAddress(e.emailStr),
+            authFailureOrSuccessOption: none(),
+          ));
+        },
+        // delegate logic to password value object
+        passwordChanged: (e) {
             emit(state.copyWith(
-              emailAddress: EmailAddress(e.emailStr),
+              password: Password(e.passwordStr),
               authFailureOrSuccessOption: none(),
             ));
-          },
-          // delegate logic to password value object
-          passwordChanged: (e) {
-              emit(state.copyWith(
-                password: Password(e.passwordStr),
-                authFailureOrSuccessOption: none(),
-              ));
-          },
+        },
 
-          /// emit a stream of events
-          /// registerWithEmailAndPasswordPressed: (e) =>
-          ///   emit.onEach(_performActionOnAuthFacadeWithEmailAndPasswordYielded(
-          ///       _authFacade.registerWithEmailAndPassword,
-          ///   ), onData: emit),
-          /// signInWithEmailAndPasswordPressed: (e) =>
-          ///   emit.onEach(_performActionOnAuthFacadeWithEmailAndPasswordYielded(
-          ///       _authFacade.signInWithEmailAndPassword,
-          ///   ), onData: emit),
+        /// emit a stream of events
+        /// registerWithEmailAndPasswordPressed: (e) =>
+        ///   emit.onEach(_performActionOnAuthFacadeWithEmailAndPasswordYielded(
+        ///       _authFacade.registerWithEmailAndPassword,
+        ///   ), onData: emit),
+        /// signInWithEmailAndPasswordPressed: (e) =>
+        ///   emit.onEach(_performActionOnAuthFacadeWithEmailAndPasswordYielded(
+        ///       _authFacade.signInWithEmailAndPassword,
+        ///   ), onData: emit),
 
-          /// pass the emitter to the util function
-          registerWithEmailAndPasswordPressed: (e) =>
-              _performActionOnAuthFacadeWithEmailAndPassword(
-                  _authFacade.registerWithEmailAndPassword,
-                  emit
-              ),
-          signInWithEmailAndPasswordPressed: (e) =>
-              _performActionOnAuthFacadeWithEmailAndPassword(
-                  _authFacade.signInWithEmailAndPassword,
-                  emit
-              ),
+        /// pass the emitter to the util function
+        registerWithEmailAndPasswordPressed: (e) =>
+            _performActionOnAuthFacadeWithEmailAndPassword(
+                _authFacade.registerWithEmailAndPassword,
+                emit
+            ),
+        signInWithEmailAndPasswordPressed: (e) =>
+            _performActionOnAuthFacadeWithEmailAndPassword(
+                _authFacade.signInWithEmailAndPassword,
+                emit
+            ),
 
-          signInWithGooglePressed: (e) async {
-            emit(state.copyWith(
-              isSubmitting: true,
-              authFailureOrSuccessOption: none(),
-            ));
+        signInWithGooglePressed: (e) async {
+          emit(state.copyWith(
+            isSubmitting: true,
+            authFailureOrSuccessOption: none(),
+          ));
 
-            final failureOrSuccess = await _authFacade.signInWithGoogle();
-            emit(state.copyWith(
-              isSubmitting: false,
-              authFailureOrSuccessOption: some(failureOrSuccess),
-            ));
-          },
+          final failureOrSuccess = await _authFacade.signInWithGoogle();
+          emit(state.copyWith(
+            isSubmitting: false,
+            authFailureOrSuccessOption: some(failureOrSuccess),
+          ));
+        },
       );
     });
   }
@@ -74,8 +74,8 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
   // ignore: unused_element
   Stream<SignInFormState> _performActionOnAuthFacadeWithEmailAndPasswordYielded(
     Future<AFailOrVal> Function({
-      @required EmailAddress emailAddress,
-      @required Password password,
+      required EmailAddress emailAddress,
+      required Password password,
     }) forwardedCall) async* {
     AFailOrVal? failureOrSuccess;
 
@@ -102,8 +102,8 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
 
   Future<void> _performActionOnAuthFacadeWithEmailAndPassword(
     Future<AFailOrVal> Function({
-      @required EmailAddress emailAddress,
-      @required Password password,
+      required EmailAddress emailAddress,
+      required Password password,
     }) forwardedCall,
     Emitter<SignInFormState> emit) async {
       AFailOrVal? failureOrSuccess;
