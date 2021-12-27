@@ -1,17 +1,18 @@
-
-import 'package:bloc/bloc.dart';
+// import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
+import 'package:todo_app_ddd/domain/auth/auth_failures.dart';
 import 'package:todo_app_ddd/domain/auth/email_address.dart';
 import 'package:todo_app_ddd/domain/auth/i_auth_facade.dart';
 import 'package:todo_app_ddd/domain/auth/password.dart';
-import 'package:todo_app_ddd/domain/auth/auth_failures.dart';
 
+part 'sign_in_form_bloc.freezed.dart';
 part 'sign_in_form_event.dart';
 part 'sign_in_form_state.dart';
 
-part 'sign_in_form_bloc.freezed.dart';
-
+@injectable
 class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
   final IAuthFacade _authFacade;
 
@@ -23,14 +24,16 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
           emit(state.copyWith(
             emailAddress: EmailAddress(e.emailStr),
             authFailureOrSuccessOption: none(),
-          ));
+            ),
+          );
         },
         // delegate logic to password value object
         passwordChanged: (e) {
             emit(state.copyWith(
               password: Password(e.passwordStr),
               authFailureOrSuccessOption: none(),
-            ));
+              ),
+            );
         },
 
         /// emit a stream of events
@@ -47,25 +50,27 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         registerWithEmailAndPasswordPressed: (e) =>
             _performActionOnAuthFacadeWithEmailAndPassword(
                 _authFacade.registerWithEmailAndPassword,
-                emit
+                emit,
             ),
         signInWithEmailAndPasswordPressed: (e) =>
             _performActionOnAuthFacadeWithEmailAndPassword(
                 _authFacade.signInWithEmailAndPassword,
-                emit
+                emit,
             ),
 
         signInWithGooglePressed: (e) async {
           emit(state.copyWith(
             isSubmitting: true,
             authFailureOrSuccessOption: none(),
-          ));
+            ),
+          );
 
           final failureOrSuccess = await _authFacade.signInWithGoogle();
           emit(state.copyWith(
             isSubmitting: false,
             authFailureOrSuccessOption: some(failureOrSuccess),
-          ));
+            ),
+          );
         },
       );
     });
@@ -76,7 +81,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
     Future<AFailOrVal> Function({
       required EmailAddress emailAddress,
       required Password password,
-    }) forwardedCall) async* {
+    }) forwardedCall,) async* {
     AFailOrVal? failureOrSuccess;
 
     final isEmailValid = state.emailAddress.isValid();
@@ -105,7 +110,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
       required EmailAddress emailAddress,
       required Password password,
     }) forwardedCall,
-    Emitter<SignInFormState> emit) async {
+    Emitter<SignInFormState> emit,) async {
     AFailOrVal? failureOrSuccess;
 
     final isEmailValid = state.emailAddress.isValid();
@@ -114,7 +119,8 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
       emit(state.copyWith(
         isSubmitting: true,
         authFailureOrSuccessOption: none(),
-      ));
+        ),
+      );
 
       failureOrSuccess = await forwardedCall(
         emailAddress: state.emailAddress,
@@ -126,6 +132,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
       isSubmitting: false,
       showErrorMessages: true,
       authFailureOrSuccessOption: optionOf(failureOrSuccess),
-    ));
+      ),
+    );
   }
 }
