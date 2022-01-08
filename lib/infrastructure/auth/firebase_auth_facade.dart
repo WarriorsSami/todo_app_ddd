@@ -3,9 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:todo_app_ddd/domain/auth/auth_failures.dart';
+import 'package:todo_app_ddd/domain/auth/domain_user.dart';
 import 'package:todo_app_ddd/domain/auth/email_address.dart';
 import 'package:todo_app_ddd/domain/auth/i_auth_facade.dart';
 import 'package:todo_app_ddd/domain/auth/password.dart';
+import 'package:todo_app_ddd/infrastructure/auth/firebase_user_mapper.dart';
 
 @LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
@@ -55,8 +57,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       );
       return right(unit);
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'wrong-password' ||
-          e.code == 'user-not-found') {
+      if (e.code == 'wrong-password' || e.code == 'user-not-found') {
         return left(const AuthFailure.invalidEmailAndPasswordCombination());
       } else {
         return left(const AuthFailure.serverError());
@@ -66,8 +67,6 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   Future<AFailOrVal> signInWithGoogle() async {
-    // await _googleSignIn.disconnect();
-    // await _firebaseAuth.signOut();
     final googleUser = await _googleSignIn.signIn();
     if (googleUser == null) {
       return left(const AuthFailure.cancelledByUser());
@@ -79,11 +78,23 @@ class FirebaseAuthFacade implements IAuthFacade {
       idToken: googleAuthentication.idToken,
     );
 
-    return _firebaseAuth
-        .signInWithCredential(googleAuthCredential)
-        .then(
+    return _firebaseAuth.signInWithCredential(googleAuthCredential).then(
           (result) => right(unit),
           onError: (_) => left(const AuthFailure.serverError()),
         );
   }
+
+  @override
+  Future<Option<DomainUser>> getSignedInUser() =>
+      _firebaseAuth.userChanges().first.then(
+            (firebaseUser) => optionOf(
+              firebaseUser!.toDomainUser(),
+            ),
+          );
+
+  @override
+  Future<void> signOut() => Future.wait([
+        _googleSignIn.signOut(),
+        _firebaseAuth.signOut(),
+      ]);
 }

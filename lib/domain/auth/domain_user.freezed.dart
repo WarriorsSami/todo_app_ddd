@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'user.dart';
+part of 'domain_user.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,41 +15,43 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$UserTearOff {
-  const _$UserTearOff();
+class _$DomainUserTearOff {
+  const _$DomainUserTearOff();
 
-  _User call({required UniqueId id}) {
-    return _User(
+  _DomainUser call({required UniqueId id}) {
+    return _DomainUser(
       id: id,
     );
   }
 }
 
 /// @nodoc
-const $User = _$UserTearOff();
+const $DomainUser = _$DomainUserTearOff();
 
 /// @nodoc
-mixin _$User {
+mixin _$DomainUser {
   UniqueId get id => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
+  $DomainUserCopyWith<DomainUser> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserCopyWith<$Res> {
-  factory $UserCopyWith(User value, $Res Function(User) then) =
-      _$UserCopyWithImpl<$Res>;
+abstract class $DomainUserCopyWith<$Res> {
+  factory $DomainUserCopyWith(
+          DomainUser value, $Res Function(DomainUser) then) =
+      _$DomainUserCopyWithImpl<$Res>;
   $Res call({UniqueId id});
 }
 
 /// @nodoc
-class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
-  _$UserCopyWithImpl(this._value, this._then);
+class _$DomainUserCopyWithImpl<$Res> implements $DomainUserCopyWith<$Res> {
+  _$DomainUserCopyWithImpl(this._value, this._then);
 
-  final User _value;
+  final DomainUser _value;
   // ignore: unused_field
-  final $Res Function(User) _then;
+  final $Res Function(DomainUser) _then;
 
   @override
   $Res call({
@@ -65,27 +67,29 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$UserCopyWith(_User value, $Res Function(_User) then) =
-      __$UserCopyWithImpl<$Res>;
+abstract class _$DomainUserCopyWith<$Res> implements $DomainUserCopyWith<$Res> {
+  factory _$DomainUserCopyWith(
+          _DomainUser value, $Res Function(_DomainUser) then) =
+      __$DomainUserCopyWithImpl<$Res>;
   @override
   $Res call({UniqueId id});
 }
 
 /// @nodoc
-class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
-    implements _$UserCopyWith<$Res> {
-  __$UserCopyWithImpl(_User _value, $Res Function(_User) _then)
-      : super(_value, (v) => _then(v as _User));
+class __$DomainUserCopyWithImpl<$Res> extends _$DomainUserCopyWithImpl<$Res>
+    implements _$DomainUserCopyWith<$Res> {
+  __$DomainUserCopyWithImpl(
+      _DomainUser _value, $Res Function(_DomainUser) _then)
+      : super(_value, (v) => _then(v as _DomainUser));
 
   @override
-  _User get _value => super._value as _User;
+  _DomainUser get _value => super._value as _DomainUser;
 
   @override
   $Res call({
     Object? id = freezed,
   }) {
-    return _then(_User(
+    return _then(_DomainUser(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -96,22 +100,22 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_User implements _User {
-  const _$_User({required this.id});
+class _$_DomainUser implements _DomainUser {
+  const _$_DomainUser({required this.id});
 
   @override
   final UniqueId id;
 
   @override
   String toString() {
-    return 'User(id: $id)';
+    return 'DomainUser(id: $id)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _User &&
+            other is _DomainUser &&
             const DeepCollectionEquality().equals(other.id, id));
   }
 
@@ -121,16 +125,17 @@ class _$_User implements _User {
 
   @JsonKey(ignore: true)
   @override
-  _$UserCopyWith<_User> get copyWith =>
-      __$UserCopyWithImpl<_User>(this, _$identity);
+  _$DomainUserCopyWith<_DomainUser> get copyWith =>
+      __$DomainUserCopyWithImpl<_DomainUser>(this, _$identity);
 }
 
-abstract class _User implements User {
-  const factory _User({required UniqueId id}) = _$_User;
+abstract class _DomainUser implements DomainUser {
+  const factory _DomainUser({required UniqueId id}) = _$_DomainUser;
 
   @override
   UniqueId get id;
   @override
   @JsonKey(ignore: true)
-  _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;
+  _$DomainUserCopyWith<_DomainUser> get copyWith =>
+      throw _privateConstructorUsedError;
 }
