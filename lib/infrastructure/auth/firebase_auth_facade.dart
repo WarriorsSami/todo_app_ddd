@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:todo_app_ddd/domain/auth/auth_failures.dart';
@@ -32,9 +31,9 @@ class FirebaseAuthFacade implements IAuthFacade {
         password: passwordStr,
       );
       return right(unit);
-    } on PlatformException catch (e) {
+    } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
-        return left(const AuthFailure.invalidEmailAndPasswordCombination());
+        return left(const AuthFailure.emailAlreadyInUse());
       } else {
         return left(const AuthFailure.serverError());
       }
@@ -55,7 +54,7 @@ class FirebaseAuthFacade implements IAuthFacade {
         password: passwordStr,
       );
       return right(unit);
-    } on PlatformException catch (e) {
+    } on FirebaseAuthException catch (e) {
       if (e.code == 'wrong-password' ||
           e.code == 'user-not-found') {
         return left(const AuthFailure.invalidEmailAndPasswordCombination());
@@ -67,6 +66,8 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   Future<AFailOrVal> signInWithGoogle() async {
+    // await _googleSignIn.disconnect();
+    // await _firebaseAuth.signOut();
     final googleUser = await _googleSignIn.signIn();
     if (googleUser == null) {
       return left(const AuthFailure.cancelledByUser());

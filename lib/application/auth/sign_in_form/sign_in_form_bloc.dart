@@ -9,7 +9,9 @@ import 'package:todo_app_ddd/domain/auth/i_auth_facade.dart';
 import 'package:todo_app_ddd/domain/auth/password.dart';
 
 part 'sign_in_form_bloc.freezed.dart';
+
 part 'sign_in_form_event.dart';
+
 part 'sign_in_form_state.dart';
 
 @injectable
@@ -17,23 +19,25 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
   final IAuthFacade _authFacade;
 
   SignInFormBloc(this._authFacade) : super(SignInFormState.initial()) {
-    on<SignInFormEvent>((event, emit) {
-      event.map(
+    on<SignInFormEvent>((event, emit) async {
+      await event.map(
         // delegate logic to email value object
         emailChanged: (e) {
-          emit(state.copyWith(
-            emailAddress: EmailAddress(e.emailStr),
-            authFailureOrSuccessOption: none(),
+          emit(
+            state.copyWith(
+              emailAddress: EmailAddress(e.emailStr),
+              authFailureOrSuccessOption: none(),
             ),
           );
         },
         // delegate logic to password value object
         passwordChanged: (e) {
-            emit(state.copyWith(
+          emit(
+            state.copyWith(
               password: Password(e.passwordStr),
               authFailureOrSuccessOption: none(),
-              ),
-            );
+            ),
+          );
         },
 
         /// emit a stream of events
@@ -49,26 +53,28 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         /// pass the emitter to the util function
         registerWithEmailAndPasswordPressed: (e) =>
             _performActionOnAuthFacadeWithEmailAndPassword(
-                _authFacade.registerWithEmailAndPassword,
-                emit,
-            ),
+          _authFacade.registerWithEmailAndPassword,
+          emit,
+        ),
         signInWithEmailAndPasswordPressed: (e) =>
             _performActionOnAuthFacadeWithEmailAndPassword(
-                _authFacade.signInWithEmailAndPassword,
-                emit,
-            ),
+          _authFacade.signInWithEmailAndPassword,
+          emit,
+        ),
 
         signInWithGooglePressed: (e) async {
-          emit(state.copyWith(
-            isSubmitting: true,
-            authFailureOrSuccessOption: none(),
+          emit(
+            state.copyWith(
+              isSubmitting: true,
+              authFailureOrSuccessOption: none(),
             ),
           );
 
           final failureOrSuccess = await _authFacade.signInWithGoogle();
-          emit(state.copyWith(
-            isSubmitting: false,
-            authFailureOrSuccessOption: some(failureOrSuccess),
+          emit(
+            state.copyWith(
+              isSubmitting: false,
+              authFailureOrSuccessOption: some(failureOrSuccess),
             ),
           );
         },
@@ -81,7 +87,9 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
     Future<AFailOrVal> Function({
       required EmailAddress emailAddress,
       required Password password,
-    }) forwardedCall,) async* {
+    })
+        forwardedCall,
+  ) async* {
     AFailOrVal? failureOrSuccess;
 
     final isEmailValid = state.emailAddress.isValid();
@@ -109,16 +117,19 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
     Future<AFailOrVal> Function({
       required EmailAddress emailAddress,
       required Password password,
-    }) forwardedCall,
-    Emitter<SignInFormState> emit,) async {
+    })
+        forwardedCall,
+    Emitter<SignInFormState> emit,
+  ) async {
     AFailOrVal? failureOrSuccess;
 
     final isEmailValid = state.emailAddress.isValid();
     final isPasswordValid = state.password.isValid();
     if (isEmailValid && isPasswordValid) {
-      emit(state.copyWith(
-        isSubmitting: true,
-        authFailureOrSuccessOption: none(),
+      emit(
+        state.copyWith(
+          isSubmitting: true,
+          authFailureOrSuccessOption: none(),
         ),
       );
 
@@ -128,10 +139,11 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
       );
     }
 
-    emit(state.copyWith(
-      isSubmitting: false,
-      showErrorMessages: true,
-      authFailureOrSuccessOption: optionOf(failureOrSuccess),
+    emit(
+      state.copyWith(
+        isSubmitting: false,
+        showErrorMessages: true,
+        authFailureOrSuccessOption: optionOf(failureOrSuccess),
       ),
     );
   }
