@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   another_flushbar:
+  auto_route:
   cupertino_icons:
   dartz:
   email_validator:
@@ -23,6 +24,7 @@ dependencies:
   uuid:
 
 dev_dependencies:
+  auto_route_generator:
   build_runner:
   flutter_lints:
   flutter_test:
