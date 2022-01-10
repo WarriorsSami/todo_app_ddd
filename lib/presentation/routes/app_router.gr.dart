@@ -15,8 +15,8 @@ import 'package:flutter/material.dart' as _i3;
 
 import '../sign_in/sign_in_page.dart' as _i1;
 
-class Router extends _i2.RootStackRouter {
-  Router([_i3.GlobalKey<_i3.NavigatorState>? navigatorKey])
+class AppRouter extends _i2.RootStackRouter {
+  AppRouter([_i3.GlobalKey<_i3.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override

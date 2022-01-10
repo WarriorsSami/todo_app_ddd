@@ -8,4 +8,4 @@ import 'package:todo_app_ddd/presentation/sign_in/sign_in_page.dart';
     ),
   ],
 )
-class $Router {}
+class $AppRouter {}
