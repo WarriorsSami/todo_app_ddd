@@ -21,6 +21,7 @@ dependencies:
   get_it:
   google_sign_in:
   injectable:
+  kt_dart:
   uuid:
 
 dev_dependencies:
