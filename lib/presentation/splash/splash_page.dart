@@ -19,7 +19,7 @@ class SplashPage extends StatelessWidget {
             }
           },
           unauthenticated: (_) =>
-              AutoRouter.of(context).pushNamed('/sign-in-page'),
+              AutoRouter.of(context).replaceNamed('/sign-in-page'),
         );
       },
       child: const Scaffold(
