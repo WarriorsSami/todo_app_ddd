@@ -5,7 +5,7 @@ part 'value_failures.freezed.dart';
 @freezed
 class ValueFailure<T> with _$ValueFailure<T> {
   const factory ValueFailure.invalidEmail({required String failedValue}) =
-  InvalidEmail<T>;
+      InvalidEmail<T>;
   const factory ValueFailure.shortPassword({required String failedValue}) =
-  ShortPassword<T>;
+      ShortPassword<T>;
 }

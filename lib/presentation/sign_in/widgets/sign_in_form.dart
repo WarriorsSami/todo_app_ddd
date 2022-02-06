@@ -108,6 +108,10 @@ class SignInForm extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
+                if (state.isSubmitting) ...[
+                  const SizedBox(height: 8),
+                  const LinearProgressIndicator(),
+                ]
               ],
             ),
           ),

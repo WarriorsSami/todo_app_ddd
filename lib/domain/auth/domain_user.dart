@@ -5,7 +5,7 @@ part 'domain_user.freezed.dart';
 
 @freezed
 class DomainUser with _$DomainUser {
-  const factory DomainUser ({
+  const factory DomainUser({
     required UniqueId id,
   }) = _DomainUser;
 }

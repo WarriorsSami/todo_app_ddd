@@ -15,10 +15,10 @@ class SignInFormState with _$SignInFormState {
   }) = _SignInFormState;
 
   factory SignInFormState.initial() => SignInFormState(
-    emailAddress: EmailAddress(''),
-    password: Password(''),
-    isSubmitting: false,
-    authFailureOrSuccessOption: none(),
-    showErrorMessages: false,
-  );
+        emailAddress: EmailAddress(''),
+        password: Password(''),
+        isSubmitting: false,
+        authFailureOrSuccessOption: none(),
+        showErrorMessages: false,
+      );
 }
