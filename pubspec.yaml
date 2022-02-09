@@ -22,6 +22,7 @@ dependencies:
   google_sign_in:
   injectable:
   kt_dart:
+  rive:
   uuid:
 
 dev_dependencies:
@@ -38,3 +39,5 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/notebook.png
+    - assets/animations/notebook_loading.riv
+    - assets/animations/movie_recorder_loading.riv

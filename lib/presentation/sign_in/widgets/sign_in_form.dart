@@ -2,7 +2,7 @@ import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_ddd/application/auth/sign_in_form/sign_in_form_bloc.dart';
-import 'package:todo_app_ddd/generated/assets.dart';
+// import 'package:todo_app_ddd/generated/assets.dart';
 
 class SignInForm extends StatelessWidget {
   const SignInForm({Key? key}) : super(key: key);
@@ -20,7 +20,7 @@ class SignInForm extends StatelessWidget {
             child: ListView(
               children: <Widget>[
                 Image.asset(
-                  Assets.imagesNotebook,
+                  'assets/images/notebook.png',
                   width: 400,
                   height: 200,
                 ),
