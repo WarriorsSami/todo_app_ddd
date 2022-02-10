@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rive/rive.dart';
 import 'package:todo_app_ddd/application/auth/auth_bloc.dart';
+import 'package:todo_app_ddd/generated/assets.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class SplashPage extends StatelessWidget {
             }
           },
           unauthenticated: (_) => Future.delayed(
-            const Duration(seconds: 5),
+            const Duration(seconds: 3),
             () => AutoRouter.of(context).replaceNamed('/sign-in-page'),
           ),
         );
@@ -28,7 +29,7 @@ class SplashPage extends StatelessWidget {
       child: const Scaffold(
         body: Center(
           child: RiveAnimation.asset(
-            'assets/animations/movie_recorder_loading.riv',
+            Assets.animationsMovieRecorderLoading,
           ),
         ),
       ),
