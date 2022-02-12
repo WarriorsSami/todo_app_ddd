@@ -9,13 +9,14 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:google_sign_in/google_sign_in.dart' as _i4;
 import 'package:injectable/injectable.dart' as _i2;
 
-import 'application/auth/auth_bloc.dart' as _i11;
-import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i10;
-import 'application/notes/note_watcher/note_watcher_bloc.dart' as _i9;
+import 'application/auth/auth_bloc.dart' as _i12;
+import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i11;
+import 'application/notes/note_actor/note_actor_bloc.dart' as _i9;
+import 'application/notes/note_watcher/note_watcher_bloc.dart' as _i10;
 import 'domain/auth/i_auth_facade.dart' as _i5;
 import 'domain/notes/i_note_repository.dart' as _i7;
 import 'infrastructure/auth/firebase_auth_facade.dart' as _i6;
-import 'infrastructure/core/firebase_injectable_module.dart' as _i12;
+import 'infrastructure/core/firebase_injectable_module.dart' as _i13;
 import 'infrastructure/notes/NoteRepository.dart'
     as _i8; // ignore_for_file: unnecessary_lambdas
 
@@ -32,12 +33,14 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i5.IAuthFacade>(() =>
       _i6.FirebaseAuthFacade(get<_i3.FirebaseAuth>(), get<_i4.GoogleSignIn>()));
   gh.lazySingleton<_i7.INoteRepository>(() => _i8.NoteRepository());
-  gh.factory<_i9.NoteWatcherBloc>(
-      () => _i9.NoteWatcherBloc(get<_i7.INoteRepository>()));
-  gh.factory<_i10.SignInFormBloc>(
-      () => _i10.SignInFormBloc(get<_i5.IAuthFacade>()));
-  gh.factory<_i11.AuthBloc>(() => _i11.AuthBloc(get<_i5.IAuthFacade>()));
+  gh.factory<_i9.NoteActorBloc>(
+      () => _i9.NoteActorBloc(get<_i7.INoteRepository>()));
+  gh.factory<_i10.NoteWatcherBloc>(
+      () => _i10.NoteWatcherBloc(get<_i7.INoteRepository>()));
+  gh.factory<_i11.SignInFormBloc>(
+      () => _i11.SignInFormBloc(get<_i5.IAuthFacade>()));
+  gh.factory<_i12.AuthBloc>(() => _i12.AuthBloc(get<_i5.IAuthFacade>()));
   return get;
 }
 
-class _$FirebaseInjectableModule extends _i12.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i13.FirebaseInjectableModule {}
