@@ -3,12 +3,14 @@ name: todo_app_ddd
 description: Todo Flutter App based on Domain Driven Design and Firebase
 publish_to: none
 version: 1.0.0+1
+
 environment:
   sdk: '>=2.15.0 <3.0.0'
 
 dependencies:
   another_flushbar:
   auto_route:
+  cloud_firestore:
   cupertino_icons:
   dartz:
   email_validator:
@@ -21,6 +23,7 @@ dependencies:
   get_it:
   google_sign_in:
   injectable:
+  json_annotation:
   kt_dart:
   rive:
   uuid:
@@ -34,23 +37,20 @@ dev_dependencies:
     sdk: flutter
   freezed:
   injectable_generator:
+  json_serializable:
   lint:
 
 flutter_icons:
-  android: "launcher_icon"
+  android: launcher_icon
   ios: true
   image_path: assets/icons/ic_launcher3.png
 
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/notebook.png
-    - assets/animations/movie_recorder_loading.riv
-    - assets/
-    - assets/icons/
-    - assets/animations/
-    - assets/images/
-
-
-
-
+  - assets/images/notebook.png
+  - assets/animations/movie_recorder_loading.riv
+  - assets/
+  - assets/icons/
+  - assets/animations/
+  - assets/images/
