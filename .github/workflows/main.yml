@@ -13,7 +13,15 @@ env:
 jobs:
   build:
     # This job will run on ubuntu virtual machine
-    runs-on: ubuntu-latest
+    name: Run analyze and test on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        include:
+          - os: ubuntu-latest
+            flutter_path: /opt/hostedtoolcache/flutter
+
     steps:
     
     # Setup Java environment in order to build the Android app.
