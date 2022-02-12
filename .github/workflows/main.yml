@@ -7,7 +7,8 @@ on:
     branches:
     - master
     
-# on: push    # Default will running for every branch.
+env:
+  flutter_version: '1.20.x'
     
 jobs:
   build:
@@ -16,16 +17,21 @@ jobs:
     steps:
     
     # Setup Java environment in order to build the Android app.
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - uses: actions/setup-java@v1
       with:
-        java-version: '12.x'
+        java-version: '1.8.x'
     
     # Setup the flutter environment.
     - uses: subosito/flutter-action@v1
       with:
-        channel: 'beta' # 'dev', 'alpha', default to: 'stable'
-        # flutter-version: '1.12.x' # you can also specify exact version of flutter
+        flutter-version: '1.22.x'
+
+    # Setup the Cache for flutter.
+    - uses: actions/cache@v1
+      with:
+        path: ${{ matrix.flutter_path }}
+        key: ${{ runner.os }}-flutter-install-cache-${{ env.flutter_version }}
     
     # Get flutter dependencies.
     - run: flutter pub get
