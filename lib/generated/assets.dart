@@ -2,6 +2,7 @@
 class Assets {
   Assets._();
 
+  static const String animationsMovieRecorderLoading =
+      'assets/animations/movie_recorder_loading.riv';
   static const String imagesNotebook = 'assets/images/notebook.png';
-
 }

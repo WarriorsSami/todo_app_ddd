@@ -88,7 +88,7 @@ class FirebaseAuthFacade implements IAuthFacade {
   Future<Option<DomainUser>> getSignedInUser() =>
       _firebaseAuth.userChanges().first.then(
             (firebaseUser) => optionOf(
-              firebaseUser!.toDomainUser(),
+              firebaseUser?.toDomainUser(),
             ),
           );
 

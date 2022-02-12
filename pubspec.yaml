@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   another_flushbar:
+  auto_route:
   cupertino_icons:
   dartz:
   email_validator:
@@ -20,9 +21,12 @@ dependencies:
   get_it:
   google_sign_in:
   injectable:
+  kt_dart:
+  rive:
   uuid:
 
 dev_dependencies:
+  auto_route_generator:
   build_runner:
   flutter_lints:
   flutter_test:
@@ -35,3 +39,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/notebook.png
+    - assets/animations/movie_recorder_loading.riv
