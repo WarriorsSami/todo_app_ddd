@@ -4,5 +4,9 @@ class Assets {
 
   static const String animationsMovieRecorderLoading =
       'assets/animations/movie_recorder_loading.riv';
+  static const String icons1024 = 'assets/icons/ic_launcher2.png';
+  static const String iconsIcLauncher = 'assets/icons/ic_launcher.png';
+  static const String imagesDomainDrivenDesignDiagram =
+      'assets/images/Domain_Driven_Design_Diagram.png';
   static const String imagesNotebook = 'assets/images/notebook.png';
 }
