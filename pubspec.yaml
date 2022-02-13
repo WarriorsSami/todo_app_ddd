@@ -26,6 +26,7 @@ dependencies:
   json_annotation:
   kt_dart:
   rive:
+  rxdart:
   uuid:
 
 dev_dependencies:
