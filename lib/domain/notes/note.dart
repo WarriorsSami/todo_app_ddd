@@ -9,7 +9,7 @@ import 'package:todo_app_ddd/domain/notes/value_objects.dart';
 part 'note.freezed.dart';
 
 @freezed
-abstract class Note implements _$Note {
+class Note with _$Note {
   const factory Note({
     required UniqueId id,
     required NoteBody body,
