@@ -14,9 +14,6 @@ class AppWidget extends StatelessWidget {
         BlocProvider(
           create: (context) => getIt<AuthBloc>()
             ..add(
-              const AuthEvent.signedOut(),
-            )
-            ..add(
               const AuthEvent.authCheckRequested(),
             ),
         ),
