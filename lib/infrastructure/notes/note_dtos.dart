@@ -12,7 +12,7 @@ part 'note_dtos.freezed.dart';
 part 'note_dtos.g.dart';
 
 @freezed
-abstract class NoteDTO implements _$NoteDTO {
+class NoteDTO with _$NoteDTO {
   const factory NoteDTO({
     // ignore: invalid_annotation_target
     @JsonKey(ignore: true) String? id,
@@ -69,7 +69,7 @@ class ServerTimeStampConverter implements JsonConverter<FieldValue, Object> {
 }
 
 @freezed
-abstract class TodoItemDTO implements _$TodoItemDTO {
+class TodoItemDTO with _$TodoItemDTO {
   const factory TodoItemDTO({
     required String id,
     required String name,
