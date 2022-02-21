@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rive/rive.dart';
 import 'package:todo_app_ddd/application/auth/auth_bloc.dart';
 import 'package:todo_app_ddd/generated/assets.dart';
+import 'package:todo_app_ddd/presentation/routes/app_router.gr.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -16,13 +16,11 @@ class SplashPage extends StatelessWidget {
         state.map(
           initial: (_) {},
           authenticated: (_) {
-            if (kDebugMode) {
-              print('I am authenticated!');
-            }
+            AutoRouter.of(context).replace(const NotesOverviewPageRoute());
           },
           unauthenticated: (_) => Future.delayed(
             const Duration(seconds: 3),
-            () => AutoRouter.of(context).replaceNamed('/sign-in-page'),
+            () => AutoRouter.of(context).replace(const SignInPageRoute()),
           ),
         );
       },
