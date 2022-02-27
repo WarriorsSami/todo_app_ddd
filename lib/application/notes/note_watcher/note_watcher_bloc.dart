@@ -43,7 +43,7 @@ class NoteWatcherBloc extends Bloc<NoteWatcherEvent, NoteWatcherState> {
         },
         notesReceived: (e) async {
           emit(
-            (e.failureOrNotes).fold(
+            e.failureOrNotes.fold(
               (f) => NoteWatcherState.loadFailure(f),
               (notes) => NoteWatcherState.loadSuccess(notes),
             ),

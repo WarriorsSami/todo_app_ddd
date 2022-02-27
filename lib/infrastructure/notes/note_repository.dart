@@ -17,10 +17,10 @@ class NoteRepository implements INoteRepository {
 
   @override
   Stream<NoteFailureOr<KtList<Note>>> watchAll() async* {
-    // users/{user ID}/notes/{note ID}
     final userDoc = await _firestore.userDocument();
+
     yield* userDoc.noteCollection
-        .orderBy('serverTimestamp', descending: true)
+        .orderBy('serverTimeStamp', descending: true)
         .snapshots()
         .map(
           (snapshot) => right<NoteFailure, KtList<Note>>(
@@ -31,21 +31,23 @@ class NoteRepository implements INoteRepository {
                 .toImmutableList(),
           ),
         )
-        .handleError((e) {
-      if (e is PlatformException && e.message!.contains('PERMISSION_DENIED')) {
-        return left(const NoteFailure.insufficientPermissions());
-      } else {
-        // log.error(e.toString());
-        return left(const NoteFailure.unexpected());
-      }
-    });
+        .handleError(
+      (e) {
+        if (e is PlatformException && e.code.contains('permission-denied')) {
+          return left(const NoteFailure.insufficientPermissions());
+        } else {
+          // log.error(e.toString());
+          return left(const NoteFailure.unexpected());
+        }
+      },
+    );
   }
 
   @override
   Stream<NoteFailureOr<KtList<Note>>> watchUncompleted() async* {
     final userDoc = await _firestore.userDocument();
     yield* userDoc.noteCollection
-        .orderBy('serverTimestamp', descending: true)
+        .orderBy('serverTimeStamp', descending: true)
         .snapshots()
         .map(
           (snapshot) => snapshot.docs.map(
@@ -63,7 +65,7 @@ class NoteRepository implements INoteRepository {
           ),
         )
         .handleError((e) {
-      if (e is PlatformException && e.message!.contains('PERMISSION_DENIED')) {
+      if (e is PlatformException && e.code.contains('permission-denied')) {
         return left(const NoteFailure.insufficientPermissions());
       } else {
         // log.error(e.toString());
