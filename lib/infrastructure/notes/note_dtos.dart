@@ -51,7 +51,7 @@ class NoteDTO with _$NoteDTO {
       _$NoteDTOFromJson(json);
 
   factory NoteDTO.fromFirestore(DocumentSnapshot doc) {
-    return NoteDTO.fromJson(doc.data as Map<String, dynamic>)
+    return NoteDTO.fromJson(doc.data()! as Map<String, dynamic>)
         .copyWith(id: doc.id);
   }
 }

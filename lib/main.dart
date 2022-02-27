@@ -7,7 +7,7 @@ import 'package:todo_app_ddd/presentation/core/app_widget.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  configureInjection(Environment.prod);
+  configureInjection(Environment.dev);
 
   runApp(AppWidget());
 }
