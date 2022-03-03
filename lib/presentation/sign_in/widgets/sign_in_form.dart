@@ -138,9 +138,12 @@ class SignInForm extends StatelessWidget {
               ).show(context);
             },
             (_) {
-              AutoRouter.of(context).replace(const NotesOverviewPageRoute());
-              BlocProvider.of<AuthBloc>(context)
-                  .add(const AuthEvent.authCheckRequested());
+              AutoRouter.of(context).replace(
+                const NotesOverviewPageRoute(),
+              );
+              BlocProvider.of<AuthBloc>(context).add(
+                const AuthEvent.authCheckRequested(),
+              );
             },
           ),
         );
