@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_ddd/application/notes/note_form/note_form_bloc.dart';
 import 'package:todo_app_ddd/domain/notes/note.dart';
 import 'package:todo_app_ddd/injection.dart';
+import 'package:todo_app_ddd/presentation/notes/note_form/widgets/body_field.dart';
 import 'package:todo_app_ddd/presentation/routes/app_router.gr.dart';
 
 class NoteFormPage extends StatelessWidget {
@@ -47,8 +48,8 @@ class NoteFormPage extends StatelessWidget {
                   ).show(context);
                 },
                 (_) {
-                  AutoRouter.of(context).popUntil(
-                    (route) => route.settings.name == NoteFormPageRoute.name,
+                  AutoRouter.of(context).popUntilRouteWithName(
+                    NotesOverviewPageRoute.name,
                   );
                 },
               );
@@ -142,6 +143,24 @@ class NoteFormPageScaffold extends StatelessWidget {
             },
           ),
         ],
+      ),
+      body: BlocBuilder<NoteFormBloc, NoteFormState>(
+        buildWhen: (previous, current) =>
+            previous.showErrorMessages != current.showErrorMessages,
+        builder: (context, state) {
+          return Form(
+            autovalidateMode: state.showErrorMessages
+                ? AutovalidateMode.always
+                : AutovalidateMode.disabled,
+            child: SingleChildScrollView(
+              child: Column(
+                children: const <Widget>[
+                  BodyField(),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

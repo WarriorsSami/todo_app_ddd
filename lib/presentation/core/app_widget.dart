@@ -19,7 +19,7 @@ class AppWidget extends StatelessWidget {
         ),
       ],
       child: MaterialApp.router(
-        title: 'Todo App',
+        title: 'Notefactor Todo App',
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light().copyWith(
           colorScheme: ColorScheme.light(
@@ -27,8 +27,8 @@ class AppWidget extends StatelessWidget {
             secondary: Colors.deepOrangeAccent,
             error: Colors.red,
           ),
-          floatingActionButtonTheme: FloatingActionButtonThemeData(
-            backgroundColor: Colors.blue[800],
+          floatingActionButtonTheme: const FloatingActionButtonThemeData(
+            backgroundColor: Colors.lightBlueAccent,
           ),
           inputDecorationTheme: InputDecorationTheme(
             border: OutlineInputBorder(

@@ -22,7 +22,7 @@ class UncompletedSwitch extends HookWidget {
           );
         },
         child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 100),
+          duration: const Duration(milliseconds: 150),
           transitionBuilder: (child, animation) => ScaleTransition(
             scale: animation,
             child: child,
