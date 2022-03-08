@@ -20,6 +20,7 @@ dependencies:
     sdk: flutter
   flutter_bloc:
   flutter_hooks:
+  flutter_native_splash:
   freezed_annotation:
   get_it:
   google_sign_in:
@@ -46,6 +47,9 @@ flutter_icons:
   android: launcher_icon
   ios: true
   image_path: assets/icons/ic_launcher3.png
+
+flutter_native_splash:
+  background_image: assets/images/splash.png
 
 flutter:
   uses-material-design: true
