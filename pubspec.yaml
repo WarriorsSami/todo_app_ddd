@@ -5,20 +5,22 @@ publish_to: none
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.15.0 <3.0.0'
+  sdk: '>=2.16.0 <3.0.0'
 
 dependencies:
   another_flushbar:
   auto_route:
-  cloud_firestore:
+  cloud_firestore: ^3.1.10
   cupertino_icons:
   dartz:
   email_validator:
-  firebase_auth:
+  firebase_auth: ^3.3.9
   firebase_core:
   flutter:
     sdk: flutter
   flutter_bloc:
+  flutter_hooks:
+  flutter_native_splash:
   freezed_annotation:
   get_it:
   google_sign_in:
@@ -45,6 +47,9 @@ flutter_icons:
   android: launcher_icon
   ios: true
   image_path: assets/icons/ic_launcher3.png
+
+flutter_native_splash:
+  background_image: assets/images/splash.png
 
 flutter:
   uses-material-design: true

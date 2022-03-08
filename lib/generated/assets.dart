@@ -10,4 +10,5 @@ class Assets {
   static const String imagesDomainDrivenDesignDiagram =
       'assets/images/Domain_Driven_Design_Diagram.png';
   static const String imagesNotebook = 'assets/images/notebook.png';
+  static const String imagesSplash = 'assets/images/splash.png';
 }

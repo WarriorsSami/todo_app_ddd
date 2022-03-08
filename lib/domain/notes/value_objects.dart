@@ -45,36 +45,21 @@ class NoteColor extends ValueObject<Color> {
     Color(0xfffedc56), // mustard
     Color(0xffd0f0c0), // tea
     Color(0xfffca3b7), // flamingo
-    Color(0xff997950), // tortilla
+    Color(0xff999009), // tortilla
     Color(0xfffffdd0), // cream
-    Color(0xffff0000), // red
     Color(0xff00bfff), // deep sky blue
     Color(0xff87ceeb), // sky blue
     Color(0xff7fff00), // lime
     Color(0xff00fa9a), // medium spring green
     Color(0xffcd5c5c), // indian red
     Color(0xfffffac8), // ivory
-    Color(0xff800000), // maroon
     Color(0xff66cdaa), // turquoise
-    Color(0xff000080), // navy
-    Color(0xff808000), // olive
-    Color(0xff800080), // purple
     Color(0xffff00ff), // fuchsia
     Color(0xff00ff00), // green
-    Color(0xff008080), // teal
-    Color(0xfffaebd7), // bisque
     Color(0xffcd853f), // peru
     Color(0xff708090), // slate gray
     Color(0xff4682b4), // steel blue
     Color(0xffd2b48c), // tan
-    Color(0xff006400), // dark green
-    Color(0xff483d8b), // slate blue
-    Color(0xff2f4f4f), // dim gray
-    Color(0xff2e8b57), // sea green
-    Color(0xff228b22), // forest green
-    Color(0xff00ced1), // dark turquoise
-    Color(0xff9400d3), // dark violet
-    Color(0xff00bfff), // deep sky blue
     Color(0xff1e90ff), // dodger blue
     Color(0xff00ffff), // cyan
   ];
