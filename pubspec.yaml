@@ -27,6 +27,7 @@ dependencies:
   injectable:
   json_annotation:
   kt_dart:
+  provider:
   rive:
   rxdart:
   uuid:
