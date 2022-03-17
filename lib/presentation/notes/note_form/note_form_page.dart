@@ -11,6 +11,7 @@ import 'package:todo_app_ddd/presentation/notes/note_form/misc/todo_item_present
 import 'package:todo_app_ddd/presentation/notes/note_form/widgets/add_todo_tile_widget.dart';
 import 'package:todo_app_ddd/presentation/notes/note_form/widgets/body_field_widget.dart';
 import 'package:todo_app_ddd/presentation/notes/note_form/widgets/color_field_widget.dart';
+import 'package:todo_app_ddd/presentation/notes/note_form/widgets/todo_list_widget.dart';
 import 'package:todo_app_ddd/presentation/routes/app_router.gr.dart';
 
 class NoteFormPage extends StatelessWidget {
@@ -163,6 +164,7 @@ class NoteFormPageScaffold extends StatelessWidget {
                   children: const <Widget>[
                     BodyField(),
                     ColorField(),
+                    TodoList(),
                     AddTodoTile(),
                   ],
                 ),
