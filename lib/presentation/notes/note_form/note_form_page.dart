@@ -3,11 +3,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app_ddd/application/notes/note_form/note_form_bloc.dart';
 import 'package:todo_app_ddd/domain/notes/note.dart';
 import 'package:todo_app_ddd/injection.dart';
+import 'package:todo_app_ddd/presentation/notes/note_form/misc/todo_item_presentation_classes.dart';
+import 'package:todo_app_ddd/presentation/notes/note_form/widgets/add_todo_tile_widget.dart';
 import 'package:todo_app_ddd/presentation/notes/note_form/widgets/body_field_widget.dart';
 import 'package:todo_app_ddd/presentation/notes/note_form/widgets/color_field_widget.dart';
+import 'package:todo_app_ddd/presentation/notes/note_form/widgets/todo_list_widget.dart';
 import 'package:todo_app_ddd/presentation/routes/app_router.gr.dart';
 
 class NoteFormPage extends StatelessWidget {
@@ -149,16 +153,21 @@ class NoteFormPageScaffold extends StatelessWidget {
         buildWhen: (previous, current) =>
             previous.showErrorMessages != current.showErrorMessages,
         builder: (context, state) {
-          return Form(
-            autovalidateMode: state.showErrorMessages
-                ? AutovalidateMode.always
-                : AutovalidateMode.disabled,
-            child: SingleChildScrollView(
-              child: Column(
-                children: const <Widget>[
-                  BodyField(),
-                  ColorField(),
-                ],
+          return ChangeNotifierProvider(
+            create: (_) => FormTodos(),
+            child: Form(
+              autovalidateMode: state.showErrorMessages
+                  ? AutovalidateMode.always
+                  : AutovalidateMode.disabled,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: const <Widget>[
+                    BodyField(),
+                    ColorField(),
+                    TodoList(),
+                    AddTodoTile(),
+                  ],
+                ),
               ),
             ),
           );
