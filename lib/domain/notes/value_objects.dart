@@ -30,7 +30,7 @@ class TodoName extends ValueObject<String> {
   factory TodoName(String input) {
     return TodoName._(
       validateMaxStringLength(input, maxLength)
-          // .flatMap(validateStringNonEmpty)
+          .flatMap(validateStringNonEmpty)
           .flatMap(validateSingleLine),
     );
   }

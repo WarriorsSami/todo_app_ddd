@@ -14,13 +14,14 @@ dependencies:
   cupertino_icons:
   dartz:
   email_validator:
-  firebase_auth: ^3.3.9
+  firebase_auth: ^3.3.11
   firebase_core:
   flutter:
     sdk: flutter
   flutter_bloc:
   flutter_hooks:
   flutter_native_splash:
+  flutter_slidable:
   freezed_annotation:
   get_it:
   google_sign_in:
